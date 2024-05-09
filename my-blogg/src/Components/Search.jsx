@@ -5,24 +5,32 @@ import { IoIosSearch } from 'react-icons/io';
 function Search() {
     const tags=[
         {
+            id: 1,
             name: 'All blogs',
         },
         {
+            id: 2,
             name: 'React blog',
         },
         {
+            id: 3,
             name: 'UX/UI blog',
         },
         {
+            id: 4,
             name: 'Dev blog',
         }
     ]
   
-  
     const [activeIndex,setActiveIndex]=useState(0);
+
+    const selectedTag = (tagName) => {
+        console.log ("Selected tag:", tagName);
+    }
+
     return (
     <div className="flex justify-center mt-5 flex-col px-4 md:px-8">
-      <img src={banner} className="items-center w-full md:w-800" />
+      <img src={banner} className="items-center w-full md:w-4/5 max-w-[800px] mx-auto mb-8" alt="Banner" />
       <div className="bg-white shadow-lg rounded-lg p-3 mt-[-30px] mx-[15%] flex items-center">
         <IoIosSearch className="text-2xl text-gray-400" />
         <input type="text" placeholder="Search" className="outline-none ml-2" />

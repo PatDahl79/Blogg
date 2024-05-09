@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from './../assets/Logo/Logo-light.png'
+import Logo from './../assets/Logo/Logo-dark.png'
 import { FaYoutube } from "react-icons/fa6";
 
 function Navbar() {
