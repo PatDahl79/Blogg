@@ -3,20 +3,15 @@ import Navbar from '../Components/Navbar'
 import Search from '../Components/Search'
 import IntroPost from '../Components/IntroPost'
 import Footer from '../Components/Footer'
-import Blogs from '../Components/Blogs'
+import Blogslists from '../Components/Blogslists'
 
 function Home () {
   return (
     <div>
-        {/*Navbar*/}
         <Navbar/>
-        {/*Search*/}
         <Search/>
-        {/*IntroPost*/}
         <IntroPost/>
-        {/*Blogs*/}
-        <Blogs/>
-        {/*Footer*/}
+        <Blogslists/>
         <Footer/>
     </div>
   )
