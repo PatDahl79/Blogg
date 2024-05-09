@@ -42,10 +42,10 @@ function Search() {
                 <ul key={item.id} onClick={()=>{setActiveIndex(index);selectedTag(item.name)}} 
                     className={`${index==activeIndex?
                     'bg-pink-200':null} p-1 pb-2 rounded-lg md:rounded-full cursor-pointer md:px-4
-                    hover:scale-110 hover:border-[1px] hover:font-bold border-pink-500 transition-all duration-100 ease-in-out`}>
+                    hover:scale-110 hover:border-[1px] hover:text-blue-500 hover:font-bold border-pink-500 transition-all duration-100 ease-in-out`}>
                     <li className='line-clamp-1'>{item.name}</li>
                 </ul>
-            ))}
+            ))}               
        </div>
     
     </div>
