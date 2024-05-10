@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-import banner from './../assets/pic/Anima1.png';
+import banner from './../assets/Anima1.png';
 import { IoIosSearch } from 'react-icons/io';
 
 function Search() {
     const tags=[
         {
             id: 1,
-            name: 'All blogs',
+            name: 'General ADHD',
         },
         {
             id: 2,
-            name: 'React blog',
+            name: 'Men ADHD',
         },
         {
             id: 3,
-            name: 'UX/UI blog',
+            name: 'Wemen ADHD',
         },
         {
             id: 4,
-            name: 'Dev blog',
+            name: 'Kids ADHD',
         }
     ]
   
