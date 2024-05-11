@@ -1,17 +1,17 @@
 //In the data.jsx file, we don't need to define functions for filtering posts. 
 //Instead, we can simply export the blogPosts array and then filter the posts as needed in the application code.
 
-import john_doe_imge from '../src/assets/MP1.png'
-import jane_smith_image from '../src/assets/GP1.png'
-import amanda_kullen_image from '../src/assets/GP2.png'
-import lash_ericsson_image from '../src/assets/MP3.png'
-import daniel_karlsson_image from '../src/assets/MP2.png'
-import maja_andersson_image from '../src/assets/GP5.png'
-import alma_jakobsson_image from '../src/assets/GP4.png'
-import august_lindgren_image from '../src/assets/MP5.png'
+import john_doe_imge from '../assets/john_doe.png'
+import jane_smith_image from '../assets/jane_smith.png'
+import amanda_kullen_image from '../assets/amanda_kullen.png'
+import lash_ericsson_image from '../assets/lash_ericsson.png'
+import daniel_karlsson_image from '../assets/daniel_karlsson.png'
+import maja_andersson_image from '../assets/maja_andersson.png'
+import alma_jakobsson_image from '../assets/alma_jakobsson.png'
+import august_lindgren_image from '../assets/august_lindgren.png'
 
 //All blogs
-const blogPosts = [
+export const blogPosts = [
      // Men blog posts 
         {
         id: 1,
@@ -202,5 +202,5 @@ const blogPosts = [
 
   ];
   
-  export { blogPosts };
+
   
