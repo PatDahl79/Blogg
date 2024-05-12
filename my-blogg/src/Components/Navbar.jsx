@@ -25,7 +25,7 @@ function Navbar() {
   };
 
   return (
-    <div className='flex justify-between p-5 text-center'>
+    <div className='container mx-auto flex justify-between py-5 text-center'>
       <img src={Logo} className="w-[100px] hover:font-bold cursor-pointer" onClick={() => navigate('/')} alt="Logo" />
       <ul className="flex gap-4 md:gap-14">
         <li className="hover:font-bold cursor-pointer" onClick={() => navigate('/')}>Home</li>
@@ -44,7 +44,7 @@ function Navbar() {
         </li>
         <li className="hover:font-bold cursor-pointer" onClick={() => navigate('contact')}>Contact</li>
       </ul>
-      <button className="flex justify-between bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:scale-105 transition-transform">Subscribe <FaYoutube className="ml-3" /> </button>
+      <button className="border-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:text-white font-semibold rounded-lg hover:scale-105 transition-transform">Subscribe <FaYoutube className="ml-3" /> </button>
     </div>
   );
 }
