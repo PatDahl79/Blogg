@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './Pages/Home'
 import Blogs from './Components/Blogs'
 import Contact from './Pages/Contact'
@@ -11,6 +11,10 @@ import GeneralAdhd from './Pages/GeneralAdhd'
 import MenAdhd from './Pages/MenAdhd'
 import KidsAdhd from './Pages/KidsAdhd'
 import WomenPostsPage from './Pages/WomenPostsPage';
+import AuthorPosts from './Pages/AuthorPosts';
+import BlogCard from './Pages/BlogCard';
+import PostsLists from './Components/PostsLists';
+import Search from './Components/Search';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,8 +30,13 @@ function App() {
       <Route path="/men" element={<MenAdhd/>}></Route>
       <Route path="/women" element={<WomenPostsPage/>}></Route>
       <Route path="/kids" element={<KidsAdhd/>}></Route>
+      <Route path="/author" element={<AuthorPosts/>}></Route>
       <Route path="/contact" element={<Contact/>}></Route>
+      <Route path="/blogs/blogcard/:id" element={<BlogCard/>}></Route>
+      <Route path="/postslists" element={<PostsLists/>}></Route>
+      <Route path="/search" element={<Search/>}></Route>
     </Routes>
+    
     <Footer/>
     </>
   )

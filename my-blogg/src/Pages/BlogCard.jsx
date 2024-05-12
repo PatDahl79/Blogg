@@ -1,43 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { blogPosts } from '../Data/data'; // Import the blogPosts array
 
 function BlogCard() {
-    const {id}=useParams();
-    const [post,setPost]=useState([])
-    useEffect(()=>{
-        console.log("Id",id)
-        getBlogById();
-    },[])
+    const { id } = useParams();
+    const [post, setPost] = useState(null);
 
-    const getBlogById=()=>{
-        GlobalApi.getPostById(id).then(resp=>{
-           
-            const item=resp.data.data;
-            const result={
-                id:item.id,
-                name:item.attributes.name,
-                title:item.attributes.title,
-                description:item.attributes.description,
-                
-                coverImage:item.attributes.coverImage.data.attributes.url,
-            };
-            setPost(result);
-            console.log("Result",result);
-        })
+    useEffect(() => {
+        // Find the blog post with the matching id
+        const selectedPost = blogPosts.find(post => post.id === parseInt(id));
+        setPost(selectedPost);
+    }, [id]);
+
+    if (!post) {
+        return <div>Loading...</div>;
     }
+
     return (
-        <div className='px-6 md:px-20 lg:px-56 mt-10'>
-        <h3 className='text-red-500 text-[12px]'>{post.tag}</h3>
-        <h3 className='text-[23px] font-bold'>{post.title}</h3>
-        <div className='flex items-center mt-5'>
-                <h3 className='font-bold text-[12px]'>Stockholm</h3>
-                <h3 className='text-gray-500 text-[10px]'>24 Sept 2024</h3>
-        </div>
-        <img src={post.coverImage} className='rounded-2xl mt-5 mb-5 w-full'/>
-        {/* <h3>{post.desc}</h3> */}
-        <ReactMarkdown children={post.desc} 
-        escapeHtml={false} className='leading-9' />
+        <div className='flex-colum items-center px-6 md:px-20 lg:px-56 mt-10 mb-20'>
+            <img src={post.image} alt={post.title} className="w-500 rounded-2xl object-cover h-[200px]" />
+
+            <div>
+                <h2 className="text-blue-600 mt-5 mb-5 ">{post.title}</h2>
+                <p>{post.description}</p>
+                <h3 className='font-bold text-[14px] mt-5'>{post.name}</h3>
+                <h3 className='font-bold text-[12px] mb-5'>{post.date}</h3>
+            </div>
+
         </div>
     );
 }
