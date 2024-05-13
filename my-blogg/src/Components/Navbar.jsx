@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Logo from './../assets/Logo-dark.png';
-import { FaYoutube } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
@@ -44,7 +43,6 @@ function Navbar() {
         </li>
         <li className="hover:font-bold cursor-pointer" onClick={() => navigate('contact')}>Contact</li>
       </ul>
-      <button className="border-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:text-white font-semibold rounded-lg hover:scale-105 transition-transform">Subscribe <FaYoutube className="ml-3" /> </button>
     </div>
   );
 }
