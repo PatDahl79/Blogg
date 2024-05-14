@@ -45,7 +45,7 @@ function Search() {
                 <input type="text" placeholder="Search" className="outline-none ml-2" />
             </div>
           
-            {/* Tag list */}
+            {/* Categ Tag list */}
             <div className='flex gap-10 justify-center mt-5'>
                 {tags.map((item) => (
                     <Link key={item.id} to={item.path} className="p-1 pb-2 rounded-lg md:rounded-full cursor-pointer md:px-4 hover:scale-110 hover:text-blue-500 hover:font-bold transition-all duration-100 ease-in-out bg-transparent">
