@@ -10,7 +10,6 @@ const namePosts = blogPosts.filter(post => post.category === 'author');
 function PostsLists () {
     return (
         <div>
-            <h2>Men Posts</h2>
             {menPosts.map(post => (
                 <div key={post.id}>
                     <img src={post.image} alt={post.title} />
@@ -19,7 +18,6 @@ function PostsLists () {
                 </div>
             ))}
 
-            <h2>Women Posts</h2>
             {womenPosts.map(post => (
                 <div key={post.id}>
                     <img src={post.image} alt={post.title} />
@@ -28,7 +26,6 @@ function PostsLists () {
                 </div>
             ))}
 
-            <h2>Kids Posts</h2>
             {kidsPosts.map(post => (
                 <div key={post.id}>
                     <img src={post.image} alt={post.title} />
@@ -37,7 +34,6 @@ function PostsLists () {
                 </div>
             ))}
 
-            <h2>General Posts</h2>
             {generalPosts.map(post => (
                 <div key={post.id}>
                     <img src={post.image} alt={post.title} />
@@ -46,7 +42,6 @@ function PostsLists () {
                 </div>
             ))}
 
-            <h2>Author</h2>
             {namePosts.map(post => (
                 <div key={post.id}>
                     <img src={post.image} alt={post.title} />

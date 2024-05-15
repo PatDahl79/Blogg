@@ -6,7 +6,6 @@ import Blogs from './Components/Blogs'
 import Contact from './Pages/Contact'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
-import About from './Pages/About'
 import GeneralAdhd from './Pages/GeneralAdhd'
 import MenAdhd from './Pages/MenAdhd'
 import KidsAdhd from './Pages/KidsAdhd'
@@ -15,6 +14,15 @@ import AuthorPosts from './Pages/AuthorPosts';
 import BlogCard from './Pages/BlogCard';
 import PostsLists from './Components/PostsLists';
 import Search from './Components/Search';
+import DeletePost from './Pages/DeletePost'
+import EditPost from './Pages/EditPost';
+import CreatePost from './Pages/CreatePost';
+import Dashboard from './Pages/Dashboard';
+import Login from './Pages/Login';
+import Logout from './Pages/Logout';
+import Register from './Pages/Register';
+import UserProfile from './Pages/UserProfile';
+import CreateProfile from './Pages/CreateProfile';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,7 +32,6 @@ function App() {
     <Navbar/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
-      <Route path="/about" element={<About/>}></Route>
       <Route path="/blogs" element={<Blogs/>}></Route>
       <Route path="/general" element={<GeneralAdhd/>}></Route>
       <Route path="/men" element={<MenAdhd/>}></Route>
@@ -35,6 +42,15 @@ function App() {
       <Route path="/blogs/blogcard/:id" element={<BlogCard/>}></Route>
       <Route path="/postslists" element={<PostsLists/>}></Route>
       <Route path="/search" element={<Search/>}></Route>
+      <Route path="/login" element={<Login/>}></Route>
+      <Route path="/logout" element={<Logout/>}></Route>
+      <Route path="/register" element={<Register/>}></Route>
+      <Route path="/editpost" element={<EditPost/>}></Route>
+      <Route path="/deletepost" element={<DeletePost/>}></Route>
+      <Route path="/createpost" element={<CreatePost/>}></Route>
+      <Route path="/dashboard" element={<Dashboard/>}></Route>
+      <Route path="/userprofile" element={<UserProfile/>}></Route>
+      <Route path="/createprofile" element={<CreateProfile/>}></Route>
     </Routes>
     
     <Footer/>

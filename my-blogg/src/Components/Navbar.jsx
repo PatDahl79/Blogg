@@ -17,6 +17,7 @@ function Navbar() {
     { id: 3, name: 'Women ADHD', path: 'women' },
     { id: 4, name: 'Kids ADHD', path: 'kids' },
     { id: 5, name: 'Author', path: 'author' },
+    { id: 6, name: 'All Blogs', path: 'postslists' },
   ];
 
   const handleTagClick = (tag) => {
@@ -28,7 +29,6 @@ function Navbar() {
       <img src={Logo} className="w-[100px] hover:font-bold cursor-pointer" onClick={() => navigate('/')} alt="Logo" />
       <ul className="flex gap-4 md:gap-14">
         <li className="hover:font-bold cursor-pointer" onClick={() => navigate('/')}>Home</li>
-        <li className="hover:font-bold cursor-pointer" onClick={() => navigate('about')}>About</li>
         <li className="relative" onClick={toggleDropdown}>
         Blogs
           {dropdownOpen && (   //Dropdown menu 
@@ -41,6 +41,8 @@ function Navbar() {
             </div>
           )}
         </li>
+        <li className="hover:font-bold cursor-pointer" onClick={() => navigate('dashboard')}>My profile</li>
+        <li className="hover:font-bold cursor-pointer" onClick={() => navigate('login')}>Login</li>
         <li className="hover:font-bold cursor-pointer" onClick={() => navigate('contact')}>Contact</li>
       </ul>
     </div>
