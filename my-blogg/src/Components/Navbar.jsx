@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Logo from './../assets/Logo-dark.png';
 import { useNavigate } from 'react-router-dom';
+import {FaBars} from "react-icons/fa"
+import {AiOutlineClose} from "react-icons/ai"
 
 function Navbar() {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false); // State to manage the dropdown menu visibility
+  const [isNavShowing, setIsNavShowing] = useState(window.innerWidth > 800 ? true : false)
 
 
   const toggleDropdown = () => {
@@ -45,6 +48,7 @@ function Navbar() {
         <li className="hover:font-bold cursor-pointer" onClick={() => navigate('login')}>Login</li>
         <li className="hover:font-bold cursor-pointer" onClick={() => navigate('contact')}>Contact</li>
       </ul>
+      <button onClick={() => setIsNavShowing(!isNavShowing)}>{isNavShowing ? <AiOutlineClose/> : <FaBars/>}</button>
     </div>
   );
 }
