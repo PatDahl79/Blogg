@@ -17,11 +17,11 @@ function WomenPostsPage ({ blogPosts }) {
           <div key={post.id} className="m-4 cursor-pointer" onClick={() => navigate(`/blogs/blogcard/${post.id}`)}>
               <img src={post.image} alt={post.title} className="w-full rounded-2xl object-cover h-[200px]" />
               <h3 className="text-blue-500 mb-3">{post.title}</h3>
-              <p className='line-clamp-3 text-gray-400 mt-3'>{post.description}</p>
+              <p>{post.description}</p>
               
               <div className='mt-4'>
-                  <h3 className='font-bold text-[14px] mt-5'>{post.name}</h3>
-                  <h3 className='font-bold text-[12px] mb-5'>{post.date}</h3>
+                <h4 className='text-xs'>{post.name}</h4>
+                <h4 className='text-xs'>{post.date}</h4>
               </div>
           </div>
           ))}

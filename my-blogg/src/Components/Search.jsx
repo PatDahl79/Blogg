@@ -31,7 +31,12 @@ function Search() {
         {
             id: 5,
             name: 'Author',
-            path: 'author'
+            path: 'authorpostspage'
+        },
+        {
+            id: 6,
+            name: 'All blogs',
+            path: 'blogs'
         }
     ]
       
@@ -51,7 +56,8 @@ function Search() {
                     <Link key={item.id} to={item.path} className="p-1 pb-2 rounded-lg md:rounded-full cursor-pointer md:px-4 hover:scale-110 hover:text-blue-500 hover:font-bold transition-all duration-100 ease-in-out bg-transparent">
                         <li className='line-clamp-1'>{item.name}</li>
                     </Link>
-                ))}               
+                ))}  
+                         
             </div>
 
             <h2 className='flex items-center justify-center font-bold mt-4 bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text'>The latest posts</h2>

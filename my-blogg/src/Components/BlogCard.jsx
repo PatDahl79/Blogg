@@ -12,19 +12,19 @@ function BlogCard() {
         setPost(selectedPost);
     }, [id]);
 
-    if (!post) {
-        return <div>Loading...</div>;
-    }
+    if (!post) { return <div>Loading...</div>;}
 
     return (
-        <div className='flex-colum items-center px-6 md:px-20 lg:px-56 mt-10 mb-20'>
-            <img src={post.image} alt={post.title} className="w-500 rounded-2xl object-cover h-[200px]" />
-
+        <div className='flex-colum items-center m-5 px-6 md:px-20 lg:px-56 mb-20'>
+            <div>
+                <img src={post.image} alt={post.title} />
+            </div>
+            
             <div>
                 <h2 className="text-blue-600 mt-5 mb-5 ">{post.title}</h2>
                 <p>{post.description}</p>
-                <h3 className='font-bold text-[14px] mt-5'>{post.name}</h3>
-                <h3 className='font-bold text-[12px] mb-5'>{post.date}</h3>
+                <h4 className='mt-5 text-xs'>{post.name}</h4>
+                <h4 className='text-xs'>{post.date}</h4>
             </div>
 
         </div>

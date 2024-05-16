@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const uniqueAuthors = [...new Set(blogPosts.map(post => post.name))];
 
-function AuthorPosts() {
+function AuthorPostsPage() {
     const navigate = useNavigate(); 
     const [selectedAuthor, setSelectedAuthor] = useState(null);
 
@@ -27,9 +27,8 @@ function AuthorPosts() {
                             <h3 className="text-blue-500 justify-center mb-3">{authorName}</h3>
                             {selectedAuthor === authorName && authorPosts.map(post => (
                                 <div key={post.id} className="m-4 cursor-pointer" onClick={() => navigate(`/blogs/blogcard/${post.id}`)}>
-                                    <p className='line-clamp-3 text-[14px] text-pink-600 mt-3'>Post ID: {post.id}</p>
+                                    <p className='line-clamp-3 text-[14px] text-pink-400 mt-3'>Post ID: {post.id}</p>
                                     <h3 className="text-blue-500 mb-3 line-clamp-3 text-[18px]">{post.title}</h3>
-                                    <p className='line-clamp-3 text-gray-400 mt-3'>{post.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -41,4 +40,4 @@ function AuthorPosts() {
     );
 }
 
-export default AuthorPosts;
+export default AuthorPostsPage;
