@@ -1,6 +1,5 @@
 import React from 'react';
-import './index.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import Contact from './Pages/Contact';
 import Navbar from './Components/Navbar';
@@ -18,32 +17,28 @@ import CreateProfile from './Pages/CreateProfile';
 import AuthorPostsPage from './Pages/AuthorPostsPage';
 import Dashboard from './Pages/Dashboard';
 import MyState from './context/myState';
-import Loader from './Components/Loader';
 
 function App() {
   return (
     <MyState>
-      <Router>
-        <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/general" element={<GeneralAdhd />} />
-            <Route path="/men" element={<MenAdhd />} />
-            <Route path="/women" element={<WomenPostsPage />} />
-            <Route path="/kids" element={<KidsAdhd />} />
-            <Route path="/author" element={<AuthorPostsPage />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blogs/blogcard/:id" element={<BlogCard />} />
-            <Route path="/editpost" element={<EditPost />} />
-            <Route path="/deletepost" element={<DeletePost />} />
-            <Route path="/createpost" element={<CreatePost />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/userprofile" element={<UserProfile />} />
-            <Route path="/createprofile" element={<CreateProfile />} />
-            <Route path="/Loader" element= {<Loader/>} />
-          </Routes>
-        <Footer />
-      </Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/general" element={<GeneralAdhd />} />
+        <Route path="/men" element={<MenAdhd />} />
+        <Route path="/women" element={<WomenPostsPage />} />
+        <Route path="/kids" element={<KidsAdhd />} />
+        <Route path="/author" element={<AuthorPostsPage />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/blogs/blogcard/:id" element={<BlogCard />} />
+        <Route path="/editpost" element={<EditPost />} />
+        <Route path="/deletepost" element={<DeletePost />} />
+        <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/createprofile" element={<CreateProfile />} />
+      </Routes>
+      <Footer />
     </MyState>
   );
 }
