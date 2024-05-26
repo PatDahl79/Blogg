@@ -1,11 +1,11 @@
 import React from 'react'
-import Search from '../Components/Search'
+import CreatePost from './CreatePost';
 
 
 function Home () {
   return (
     <div>
-        <Search/>
+        <CreatePost/>
     </div>
   )
 }

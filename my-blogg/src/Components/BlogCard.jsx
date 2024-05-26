@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { blogPosts } from '../Data/data'; // Import the blogPosts array
+import Loader from './Loader';
 
 function BlogCard() {
     const { id } = useParams();
@@ -12,7 +13,7 @@ function BlogCard() {
         setPost(selectedPost);
     }, [id]);
 
-    if (!post) { return <div>Loading...</div>;}
+    if (!post) { return <Loader/>;}
 
     return (
         <div className='flex-colum items-center m-5 px-6 md:px-20 lg:px-56 mb-20'>
