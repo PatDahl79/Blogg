@@ -1,5 +1,3 @@
-//In the data.jsx file, we don't need to define functions for filtering posts. 
-//Instead, we can simply export the blogPosts array and then filter the posts as needed in the application code.
 
 import john_doe_imge from '../assets/john_doe.png'
 import jane_smith_image from '../assets/jane_smith.png'

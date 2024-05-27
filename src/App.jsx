@@ -17,6 +17,7 @@ import CreateProfile from './Pages/CreateProfile';
 import AuthorPostsPage from './Pages/AuthorPostsPage';
 import Dashboard from './Pages/Dashboard';
 import MyState from './context/myState';
+import AllBlogs from './Pages/AllBlogs';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/kids" element={<KidsAdhd />} />
         <Route path="/author" element={<AuthorPostsPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/allblogs" element={<AllBlogs />} />
         <Route path="/blogs/blogcard/:id" element={<BlogCard />} />
         <Route path="/editpost" element={<EditPost />} />
         <Route path="/deletepost" element={<DeletePost />} />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { blogPosts } from '../Data/data';
+import { blogPosts } from '../Pages/AllBlogs';
 import { useNavigate } from 'react-router-dom'
 
 function Blogs () {
@@ -7,7 +7,7 @@ function Blogs () {
   
   return (
     <div className='mt-10 mb-20 px-10'>
-      <h1 className='contact flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text'>All Blogs</h1>
+      <h1 className='contact flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text'>{post.id}</h1>
         
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 mt-10 px-10">
             {blogPosts.map((post) => (
