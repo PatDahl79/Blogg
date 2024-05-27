@@ -8,7 +8,6 @@ import GeneralAdhd from './Pages/GeneralAdhd';
 import MenAdhd from './Pages/MenAdhd';
 import KidsAdhd from './Pages/KidsAdhd';
 import WomenPostsPage from './Pages/WomenPostsPage';
-import BlogCard from './Components/BlogCard';
 import DeletePost from './Pages/DeletePost';
 import EditPost from './Pages/EditPost';
 import CreatePost from './Pages/CreatePost';
@@ -17,31 +16,41 @@ import CreateProfile from './Pages/CreateProfile';
 import AuthorPostsPage from './Pages/AuthorPostsPage';
 import Dashboard from './Pages/Dashboard';
 import MyState from './context/myState';
-import AllBlogs from './Pages/AllBlogs';
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { user } = useContext(UserContext);
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        user ? <Component {...props} /> : <Redirect to="/login" />
+      }
+    />
+  );
+};
+
+
 
 function App() {
   return (
-    <MyState>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/general" element={<GeneralAdhd />} />
-        <Route path="/men" element={<MenAdhd />} />
-        <Route path="/women" element={<WomenPostsPage />} />
-        <Route path="/kids" element={<KidsAdhd />} />
-        <Route path="/author" element={<AuthorPostsPage />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/allblogs" element={<AllBlogs />} />
-        <Route path="/blogs/blogcard/:id" element={<BlogCard />} />
-        <Route path="/editpost" element={<EditPost />} />
-        <Route path="/deletepost" element={<DeletePost />} />
-        <Route path="/createpost" element={<CreatePost />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/userprofile" element={<UserProfile />} />
-        <Route path="/createprofile" element={<CreateProfile />} />
-      </Routes>
-      <Footer />
-    </MyState>
+    <Route>
+      <UserProvider>
+        <MyState>
+          <Navbar />
+          <Switch>
+          <Route path="/" element={<Home />} />
+          <Route path="/author" element={<AuthorPostsPage />} />
+          <Route path="/editpost" element={<EditPost />} />
+          <Route path="/deletepost" element={<DeletePost />} />
+          <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/createprofile" element={<CreateProfile />} />
+          </Switch>
+          </MyState>
+        </UserProvider>
+    </Route>
   );
 }
 

@@ -1,35 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { blogPosts } from '../Data/data'; // Import the blogPosts array
-import Loader from './Loader';
+import React, { useContext } from 'react';
+import { MyContext } from '../context/myContext';
+import { UserContext } from '../context/UserProvider';
+import CommentSection from './CommentSection';
 
-function BlogCard() {
-    const { id } = useParams();
-    const [post, setPost] = useState(null);
+const BlogCard = ({ post }) => {
+  const { deletePost } = useContext(MyContext);
+  const { user } = useContext(UserContext);
 
-    useEffect(() => {
-        // Find the blog post with the matching id
-        const selectedPost = blogPosts.find(post => post.id === parseInt(id));
-        setPost(selectedPost);
-    }, [id]);
+  const handleDelete = () => {
+    deletePost(post.id);
+  };
 
-    if (!post) { return <Loader/>;}
-
-    return (
-        <div className='flex-colum items-center m-5 px-6 md:px-20 lg:px-56 mb-20'>
-            <div>
-                <img src={post.image} alt={post.title} />
-            </div>
-            
-            <div>
-                <h2 className="text-blue-600 mt-5 mb-5 ">{post.title}</h2>
-                <p>{post.description}</p>
-                <h4 className='mt-5 text-xs'>{post.name}</h4>
-                <h4 className='text-xs'>{post.date}</h4>
-            </div>
-
-        </div>
-    );
-}
+  return (
+    <div className="p-4 mb-4 bg-white shadow-md">
+      <h2 className="text-xl font-bold">{post.title}</h2>
+      <p className="text-gray-700">by {post.author}</p>
+      <p>{post.content}</p>
+      {user && user.email === post.author && (
+        <button onClick={handleDelete} className="px-4 py-2 mt-2 font-bold text-white bg-red-500 rounded">
+          Delete
+        </button>
+      )}
+      <CommentSection postId={post.id} />
+    </div>
+  );
+};
 
 export default BlogCard;

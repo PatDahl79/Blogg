@@ -1,24 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import MyContext from './myContext';
+// src/context/myState.jsx
+import React, { useState, useContext, useEffect } from 'react';
+import { MyContext } from './myContext';
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { fireDB } from '../firebaseConfig';
 
-function MyState({ children }) {
-    const initialMode = localStorage.getItem('mode') || 'light';
-    const [mode, setMode] = useState(initialMode);
+const MyState = ({ children }) => {
+  const [posts, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
 
-    useEffect(() => {
-        document.body.style.backgroundColor = mode === 'dark' ? 'rgb(17, 24, 39)' : 'white';
-        localStorage.setItem('mode', mode);
-    }, [mode]);
-
-    const toggleMode = () => {
-        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const postsCollection = collection(fireDB, 'posts');
+      const postsSnapshot = await getDocs(postsCollection);
+      const postsList = postsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setPosts(postsList);
     };
 
-    return (
-        <MyContext.Provider value={{ mode, toggleMode }}>
-            {children}
-        </MyContext.Provider>
-    );
-}
+    const fetchComments = async () => {
+      const commentsCollection = collection(fireDB, 'comments');
+      const commentsSnapshot = await getDocs(commentsCollection);
+      const commentsList = commentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setComments(commentsList);
+    };
+
+    fetchPosts();
+    fetchComments();
+  }, []);
+
+  const addPost = async (post) => {
+    const docRef = await addDoc(collection(fireDB, 'posts'), post);
+    setPosts([...posts, { id: docRef.id, ...post }]);
+  };
+
+  const updatePost = async (id, updatedPost) => {
+    const postDoc = doc(fireDB, 'posts', id);
+    await updateDoc(postDoc, updatedPost);
+    setPosts(posts.map(post => (post.id === id ? { id, ...updatedPost } : post)));
+  };
+
+  const deletePost = async (id) => {
+    const postDoc = doc(fireDB, 'posts', id);
+    await deleteDoc(postDoc);
+    setPosts(posts.filter(post => post.id !== id));
+  };
+
+  const addComment = async (comment) => {
+    const docRef = await addDoc(collection(fireDB, 'comments'), comment);
+    setComments([...comments, { id: docRef.id, ...comment }]);
+  };
+
+  return (
+    <MyContext.Provider value={{ posts, addPost, updatePost, deletePost, comments, addComment }}>
+      {children}
+    </MyContext.Provider>
+  );
+};
 
 export default MyState;

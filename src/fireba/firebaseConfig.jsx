@@ -5,15 +5,13 @@ import { getAuth } from 'firebase/auth';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDSnA61yxFA8zMHA5nncZalTejGTsbsVZo",
-  authDomain: "bloggii-93da0.firebaseapp.com",
-  projectId: "bloggii-93da0",
-  storageBucket: "bloggii-93da0.appspot.com",
-  messagingSenderId: "443302333733",
-  appId: "1:443302333733:web:6b52b507fb6c528cf81ecc",
-  measurementId: "G-EHLV6JDJS0"
+  apiKey: "AIzaSyDYzrb91znr5wEe-E8_C31NzZRALunVbp0",
+  authDomain: "blog-app-d953d.firebaseapp.com",
+  projectId: "blog-app-d953d",
+  storageBucket: "blog-app-d953d.appspot.com",
+  messagingSenderId: "931961983980",
+  appId: "1:931961983980:web:8160c03b40f1126f4c26c9"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const fireDB = getFirestore(app);
