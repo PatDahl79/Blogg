@@ -1,4 +1,3 @@
-
 import john_doe_imge from '../assets/john_doe.png'
 import jane_smith_image from '../assets/jane_smith.png'
 import amanda_kullen_image from '../assets/amanda_kullen.png'

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import myContext from '../context/UserProvider';
+import myContext from '../context/myContext';
 import { blogPosts } from '../Data/data'; 
 
 function AllBlogs() {

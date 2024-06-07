@@ -1,8 +1,8 @@
 // src/context/myState.jsx
-import React, { useState, useContext, useEffect } from 'react';
-import { MyContext } from './myContext';
+import React, { useState, useEffect } from 'react';
+import MyContext from './myContext';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { fireDB } from '../firebaseConfig';
+import { fireDB } from '../fireba/firebaseConfig';
 
 const MyState = ({ children }) => {
   const [posts, setPosts] = useState([]);

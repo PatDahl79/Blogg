@@ -1,34 +1,21 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCTRuGgvs_7agVjYZ9l6cMq3kOpUxZ9cH4",
-  authDomain: "react-js-blog-website-yt.firebaseapp.com",
-  projectId: "react-js-blog-website-yt",
-  storageBucket: "react-js-blog-website-yt.appspot.com",
-  messagingSenderId: "511273583112",
-  appId: "1:511273583112:web:8f691fcae60cbc4aa807bd"
+  apiKey: "AIzaSyDYzrb91znr5wEe-E8_C31NzZRALunVbp0",
+  authDomain: "blog-app-d953d.firebaseapp.com",
+  projectId: "blog-app-d953d",
+  storageBucket: "blog-app-d953d.appspot.com",
+  messagingSenderId: "931961983980",
+  appId: "1:931961983980:web:ae4e398b9f6869304c26c9"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-// google auth
-
-const provider = new GoogleAuthProvider();
-
-const auth = getAuth();
-
-export const authWithGoogle = async () => {
-
-    let user = null;
-
-    await signInWithPopup(auth, provider)
-    .then((result) => {
-        user = result.user
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-
-    return user;
-}
+export { auth, db, storage };

@@ -1,7 +1,7 @@
 // src/context/UserProvider.jsx
 import React, { createContext, useState, useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebaseConfig';
+import { auth } from '../fireba/firebaseConfig';
 
 export const UserContext = createContext();
 
@@ -16,7 +16,7 @@ const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
     </UserContext.Provider>
   );

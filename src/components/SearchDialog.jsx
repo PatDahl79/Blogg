@@ -2,7 +2,7 @@ import { Fragment, useContext, useState } from "react";
 import {  Dialog,  DialogBody,  Input,} from "@material-tailwind/react";
 import myContext from "../context/myContext";
 import { AiOutlineSearch } from "react-icons/ai";
-import Image from '../assets/Anima1.png'
+import Image from '../assets/Banner.png'
 
 export default function SearchDialog() {
     const [open, setOpen] = useState(false);
