@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import MyContext from './myContext';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { fireDB } from '../fireba/firebaseConfig';
+import { db } from '../Common/firebase';
 
 const MyState = ({ children }) => {
   const [posts, setPosts] = useState([]);
@@ -28,7 +28,7 @@ const MyState = ({ children }) => {
   }, []);
 
   const addPost = async (post) => {
-    const docRef = await addDoc(collection(fireDB, 'posts'), post);
+    const docRef = await addDoc(collection(db, 'posts'), post);
     setPosts([...posts, { id: docRef.id, ...post }]);
   };
 

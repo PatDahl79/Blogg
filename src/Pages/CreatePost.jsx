@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { MyContext } from '../context/myContext';
 import { UserContext } from '../context/UserProvider';
-import { storage } from '../fireba/firebaseConfig';
+import { storage } from '../Common/firebase';
 
 const CreatePost = () => {
   const [author, setAuthor] = useState('');

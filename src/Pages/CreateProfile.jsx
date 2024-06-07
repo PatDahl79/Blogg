@@ -29,9 +29,6 @@ const CreateProfile = () => {
     }, [])
 
     const {id} = useParams()
-
-    
-    
     
     useEffect(() => {
         // Fetching current user details from db
@@ -85,9 +82,7 @@ const updateUserDetail = async (e) => {
     }
 }
 
-
-
-  return (
+return (
     <section className="profile">
         <div className="container profile__container">
             <Link to={`/myposts/${currentUser?.id}`} className='btn'>My Posts</Link>

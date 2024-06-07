@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loader from '../components/Loader'
-import { UserContext } from '../context/myContext'
+import { MyContext } from '../context/myContext'
 
 const Dashboard = () => {
     const {id} = useParams()
@@ -11,7 +11,7 @@ const Dashboard = () => {
 
     const navigate = useNavigate()
 
-    const {currentUser} = useContext(UserContext)
+    const {currentUser} = useContext(MyContext)
     const token = currentUser?.token;
 
     // redirect to login page for any user to lands on this page without token
@@ -52,8 +52,6 @@ const Dashboard = () => {
             console.log(error)
         }
     }
-
-
 
   return (
     <section className="dashboard">

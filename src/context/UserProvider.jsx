@@ -1,7 +1,7 @@
 // src/context/UserProvider.jsx
 import React, { createContext, useState, useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../fireba/firebaseConfig';
+import { auth } from '../Common/firebase';
 
 export const UserContext = createContext();
 

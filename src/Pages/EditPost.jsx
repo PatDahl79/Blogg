@@ -1,114 +1,107 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import axios from "axios"
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { UserContext } from '../context/userContext';
+import React, { useState, useEffect, useContext } from 'react';
+import { MyContext } from '../context/myContext';
+import { UserContext } from '../context/UserProvider';
+import { storage } from '../Common/firebase';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const EditPost = () => {
-    const [title, setTitle] = useState('')
-    const [category, setCategory] = useState('Uncategorized')
-    const [description, setDescription] = useState('')
-    const [thumbnail, setThumbnail] = useState('')
-    const [error, setError] = useState('')
+  const { postId } = useParams();
+  const navigate = useNavigate();
+  const { getPostById, updatePost } = useContext(MyContext);
+  const [post, setPost] = useState(null);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [image, setImage] = useState(null);
+  const [category, setCategory] = useState('General'); // Default category
 
-    const params = useParams()
-    const navigate = useNavigate()
-    const {currentUser} = useContext(UserContext)
-    const token = currentUser?.token;
+  useEffect(() => {
+    const fetchPost = async () => {
+      const fetchedPost = await getPostById(postId);
+      setPost(fetchedPost);
+      setTitle(fetchedPost.title);
+      setContent(fetchedPost.content);
+      setCategory(fetchedPost.category);
+    };
 
-    // redirect to login page for any user to lands on this page without token
-    useEffect(() => {
-        if(!token) {
-        navigate('/login')
-        }
-    }, [])
+    fetchPost();
+  }, [postId, getPostById]);
 
-    const modules = {
-        toolbar: [
-            [{ 'header': [1, 2, false] }],
-            ['bold', 'italic', 'underline','strike', 'blockquote'],
-            [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-            ['link', 'image'],
-            ['clean']
-        ],
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Upload new image to Firebase Storage if a new image is selected
+    let imageURL = post.image;
+    if (image) {
+      const imageRef = storage.ref().child(`images/${image.name}`);
+      await imageRef.put(image);
+      imageURL = await imageRef.getDownloadURL();
     }
 
-    const formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image'
-    ]
+    // Create updated post object
+    const updatedPost = {
+      ...post,
+      title,
+      content,
+      image: imageURL,
+      category,
+      date: new Date().toISOString(),
+    };
 
-    const POST_CATEGORIES = ["Agriculture", "Business", "Education", "Entertainment", "Art", "Investment", "Uncategorized", "Weather"]
+    // Update post in the database
+    await updatePost(postId, updatedPost);
 
+    // Redirect to the post details page or another appropriate page
+    navigate(`/posts/${postId}`);
+  };
 
-    useEffect(() => {
-        const getPost = async () => {
-            try {
-                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/posts/${params.id}`)
-                setTitle(response?.data.title)
-                setDescription(response?.data.description)
+  return (
+    <div className="max-w-md mt-10 mx-auto bg-white p-6 rounded-md shadow-md">
+      <h2 className="text-center text-2xl font-bold mb-4">Edit Blog</h2>
+      {post ? (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="block w-full px-3 py-2 mb-2 border rounded-md"
+            required
+          />
+          <label htmlFor="category" className="block mb-2">
+            Category:
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="block w-full px-3 py-2 border rounded-md"
+            >
+              <option value="General">General</option>
+              <option value="Men ADHD">Men ADHD</option>
+              <option value="Women ADHD">Women ADHD</option>
+              <option value="Kids ADHD">Kids ADHD</option>
+            </select>
+          </label>
+          <textarea
+            placeholder="Content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="block w-full px-3 py-2 mb-2 border rounded-md"
+            required
+          />
+          <input
+            type="file"
+            onChange={(e) => setImage(e.target.files[0])}
+            className="block w-full px-3 py-2 mb-2 border rounded-md"
+          />
+          <button type="submit" className="justify-center px-4 py-2 font-bold text-white bg-blue-500 rounded">
+            Update Blog
+          </button>
+        </form>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+};
 
-            } catch (error) {
-                console.log(error)
-                navigate('/login')
-            }
-    }
-
-    getPost();
-    }, [])
-
-
-
-    const EditPost = async (e) => {
-        e.preventDefault();
-
-        const postData = new FormData();
-        postData.set('title', title);
-        postData.set('category', category);
-        postData.set('description', description);
-        postData.set('thumbnail', thumbnail)
-
-        try {
-            const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}/posts/${params.id}`, postData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
-            if(response.status == 200) {
-                return navigate('/')
-            }
-        } catch (err) {
-            if(err.response.data.message === "TypeError: Cannot read properties of null (reading 'thumbnail')") {
-                setError("Please choose a thumbnail")
-            } else {
-                setError(err.response.data.message);
-            }
-        }
-    }
-
-    const changeCat = (newCat) => {
-        setCategory(newCat)
-    }
-    
-
-    return (
-        <section className="create-post">
-            <div className="container create-post__container">
-                <h2>Edit Post</h2>
-                {error && <p className="form__error-message">{error}</p>}
-                <form onSubmit={EditPost} className='form create-post__form' encType="multipart/form-data">
-                    <input type="text" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} />
-                    <select name='category' value={category} onChange={e => changeCat(e.target.value)}>
-                        {
-                            POST_CATEGORIES.map(cat => <option key={cat}>{cat}</option>)
-                        }
-                    </select>
-                    <ReactQuill modules={modules} formats={formats} value={description} onChange={setDescription}></ReactQuill>
-                    <input type="file" onChange={e => setThumbnail(e.target.files[0])} accept="png, jpg, jpeg" />
-                    <button type="submit" className='btn primary'>Update</button>
-                </form>
-            </div>
-        </section>
-    )
-}
-
-export default EditPost
+export default EditPost;
