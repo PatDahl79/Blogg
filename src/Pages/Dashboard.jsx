@@ -17,7 +17,7 @@ const Dashboard = () => {
     // redirect to login page for any user to lands on this page without token
     useEffect(() => {
         if(!token) {
-        navigate('/login')
+        navigate('/auth')
         }
     }, [])
 
@@ -36,13 +36,10 @@ const Dashboard = () => {
         fetchPosts()
     }, [id])
 
-
-
     // show loading spinner
     if(isLoading) {
         return <Loader/>
     }
-
 
     const removePost = async (postId) => {
         try {

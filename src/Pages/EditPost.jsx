@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { MyContext } from '../context/myContext';
-import { UserContext } from '../context/UserProvider';
 import { storage } from '../Common/firebase';
 import { useParams, useNavigate } from 'react-router-dom';
 
